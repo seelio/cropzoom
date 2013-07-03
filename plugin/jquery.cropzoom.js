@@ -690,7 +690,7 @@
                     _self.find("#t").css({
                         "display": "block",
                         "width": $options.width,
-                        'height': ui.position.top,
+                        'height': getData('selector').y,
                         'left': 0,
                         'top': 0
                     });
@@ -699,7 +699,7 @@
                             "display": "block",
                             "width": $options.width,
                             'height': $options.height,
-                            'top': (ui.position.top + $selector
+                            'top': (getData('selector').y + $selector
                                 .height())
                                 + "px",
                             'left': 0
@@ -707,15 +707,15 @@
                     _self.find("#l").css({
                         "display": "block",
                         'left': 0,
-                        'top': ui.position.top,
-                        'width': ui.position.left,
+                        'top': getData('selector').y,
+                        'width': getData('selector').x,
                         'height': $selector.height()
                     });
                     _self.find("#r").css(
                         {
                             "display": "block",
-                            'top': ui.position.top,
-                            'left': (ui.position.left + $selector
+                            'top': getData('selector').y,
+                            'left': (getData('selector').x + $selector
                                 .width())
                                 + "px",
                             'width': $options.width,
