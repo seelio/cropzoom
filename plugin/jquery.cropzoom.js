@@ -156,7 +156,8 @@
                     'left': getData('image').posX,
                     'top': getData('image').posY,
                     'width': getData('image').w,
-                    'height': getData('image').h
+                    'height': getData('image').h,
+                    'max-width': 'none'
                 });
 
                 var ext = getExtensionSource();
@@ -456,6 +457,13 @@
                                 if ($options.image.onZoom != null) {
                                     $options.image.onZoom($image,
                                         getData('image'));
+                                }
+                                if ($options.image.snapToContainer) {
+                                    var ui_object = {
+                                        position: $($image).position(),
+                                        helper: $image
+                                    }
+                                    limitBounds(ui_object)
                                 }
                             }
                         });
