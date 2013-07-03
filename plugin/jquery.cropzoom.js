@@ -40,6 +40,8 @@
                         showDimetionsOnDrag: true,
                         maxHeight: null,
                         maxWidth: null,
+                        draggable: true,
+                        resizable: true,
                         startWithOverlay: false,
                         hideOverlayOnDragAndResize: true,
                         onSelectorDrag: null,
@@ -545,64 +547,68 @@
                                 })
                         });
                     // Add draggable to the selector
-                    $selector
-                        .draggable({
-                            containment: 'parent',
-                            iframeFix: true,
-                            refreshPositions: true,
-                            drag: function (event, ui) {
-                                // Update position of the overlay
-                                getData('selector').x = ui.position.left;
-                                getData('selector').y = ui.position.top;
-                                makeOverlayPositions(ui);
-                                showInfo();
-                                if ($options.selector.onSelectorDrag != null)
-                                    $options.selector.onSelectorDrag(
-                                        $selector,
-                                        getData('selector'));
-                            },
-                            stop: function (event, ui) {
-                                // hide overlay
-                                if ($options.selector.hideOverlayOnDragAndResize)
-                                    hideOverlay();
-                                if ($options.selector.onSelectorDragStop != null)
-                                    $options.selector
-                                        .onSelectorDragStop(
+                    if ($options.selector.draggable) {
+                        $selector
+                            .draggable({
+                                containment: 'parent',
+                                iframeFix: true,
+                                refreshPositions: true,
+                                drag: function (event, ui) {
+                                    // Update position of the overlay
+                                    getData('selector').x = ui.position.left;
+                                    getData('selector').y = ui.position.top;
+                                    makeOverlayPositions(ui);
+                                    showInfo();
+                                    if ($options.selector.onSelectorDrag != null)
+                                        $options.selector.onSelectorDrag(
                                             $selector,
                                             getData('selector'));
-                            }
-                        });
-                    $selector
-                        .resizable({
-                            aspectRatio: $options.selector.aspectRatio,
-                            maxHeight: $options.selector.maxHeight,
-                            maxWidth: $options.selector.maxWidth,
-                            minHeight: $options.selector.h,
-                            minWidth: $options.selector.w,
-                            containment: 'parent',
-                            resize: function (event, ui) {
-                                // update ovelay position
-                                getData('selector').w = $selector
-                                    .width();
-                                getData('selector').h = $selector
-                                    .height();
-                                makeOverlayPositions(ui);
-                                showInfo();
-                                if ($options.selector.onSelectorResize != null)
-                                    $options.selector.onSelectorResize(
-                                        $selector,
-                                        getData('selector'));
-                            },
-                            stop: function (event, ui) {
-                                if ($options.selector.hideOverlayOnDragAndResize)
-                                    hideOverlay();
-                                if ($options.selector.onSelectorResizeStop != null)
-                                    $options.selector
-                                        .onSelectorResizeStop(
+                                },
+                                stop: function (event, ui) {
+                                    // hide overlay
+                                    if ($options.selector.hideOverlayOnDragAndResize)
+                                        hideOverlay();
+                                    if ($options.selector.onSelectorDragStop != null)
+                                        $options.selector
+                                            .onSelectorDragStop(
+                                                $selector,
+                                                getData('selector'));
+                                }
+                            });
+                    }
+                    if ($options.selector.resizable) {
+                        $selector
+                            .resizable({
+                                aspectRatio: $options.selector.aspectRatio,
+                                maxHeight: $options.selector.maxHeight,
+                                maxWidth: $options.selector.maxWidth,
+                                minHeight: $options.selector.h,
+                                minWidth: $options.selector.w,
+                                containment: 'parent',
+                                resize: function (event, ui) {
+                                    // update ovelay position
+                                    getData('selector').w = $selector
+                                        .width();
+                                    getData('selector').h = $selector
+                                        .height();
+                                    makeOverlayPositions(ui);
+                                    showInfo();
+                                    if ($options.selector.onSelectorResize != null)
+                                        $options.selector.onSelectorResize(
                                             $selector,
                                             getData('selector'));
-                            }
-                        });
+                                },
+                                stop: function (event, ui) {
+                                    if ($options.selector.hideOverlayOnDragAndResize)
+                                        hideOverlay();
+                                    if ($options.selector.onSelectorResizeStop != null)
+                                        $options.selector
+                                            .onSelectorResizeStop(
+                                                $selector,
+                                                getData('selector'));
+                                }
+                            });
+                    }
 
                     showInfo($selector);
                     // add selector to the main container
