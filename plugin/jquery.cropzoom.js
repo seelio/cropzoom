@@ -402,11 +402,7 @@
                 function createZoomSlider() {
 
                     var zoomContainerSlider = $("<div />").attr('id',
-                            'zoomContainer').mouseover(function () {
-                            $(this).css('opacity', 1);
-                        }).mouseout(function () {
-                            $(this).css('opacity', 0.6);
-                        });
+                            'zoomContainer');
 
                     var zoomMin = $('<div />').attr('id', 'zoomMin');
                     var zoomMax = $('<div />').attr('id', 'zoomMax');
