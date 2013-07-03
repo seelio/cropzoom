@@ -192,6 +192,9 @@
                             limitBounds(ui);
                     }
                 });
+                if (!$options.selector.draggable && !$options.selector.resizable) {
+                    $($image).css({cursor: 'pointer'})
+                }
 
                 // Create the selector
                 createSelector();
@@ -611,7 +614,9 @@
                                 }
                             });
                     }
-
+                    if (!$options.selector.draggable && !$options.selector.resizable) {
+                        $selector.css({'pointer-events': 'none'})
+                    }
                     showInfo($selector);
                     // add selector to the main container
                     _self.append($selector);
@@ -672,6 +677,9 @@
                             'z-index': 2,
                             'visibility': 'visible'
                         });
+                        if (!$options.selector.draggable && !$options.selector.resizable) {
+                            divO.css({'pointer-events': 'none'})
+                        }
                         _self.append(divO);
                     });
                 }
