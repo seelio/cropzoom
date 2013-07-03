@@ -231,17 +231,17 @@
                     createMovementControls();
 
                 function limitBounds(ui) {
-                    if (ui.position.top > 0)
-                        getData('image').posY = 0;
-                    if (ui.position.left > 0)
-                        getData('image').posX = 0;
-
                     var bottom = -(getData('image').h - ui.helper.parent()
                         .parent().height()), right = -(getData('image').w - ui.helper
                         .parent().parent().width());
-                    if (ui.position.top < bottom)
+                    if (ui.position.top > 0)
+                        getData('image').posY = 0;
+                    else if (ui.position.top < bottom)
                         getData('image').posY = bottom;
-                    if (ui.position.left < right)
+
+                    if (ui.position.left > 0)
+                        getData('image').posX = 0;
+                    else if (ui.position.left < right)
                         getData('image').posX = right;
                     calculateTranslationAndRotation();
                 }
@@ -408,10 +408,8 @@
                             $(this).css('opacity', 0.6);
                         });
 
-                    var zoomMin = $('<div />').attr('id', 'zoomMin').html(
-                        "<b>-</b>");
-                    var zoomMax = $('<div />').attr('id', 'zoomMax').html(
-                        "<b>+</b>");
+                    var zoomMin = $('<div />').attr('id', 'zoomMin');
+                    var zoomMax = $('<div />').attr('id', 'zoomMax');
 
                     var $slider = $("<div />").attr('id', 'zoomSlider');
 
@@ -708,7 +706,7 @@
                             "width": $options.width,
                             'height': $options.height,
                             'top': (getData('selector').y + $selector
-                                .height())
+                                .outerHeight())
                                 + "px",
                             'left': 0
                         });
@@ -717,17 +715,17 @@
                         'left': 0,
                         'top': getData('selector').y,
                         'width': getData('selector').x,
-                        'height': $selector.height()
+                        'height': $selector.outerHeight()
                     });
                     _self.find("#r").css(
                         {
                             "display": "block",
                             'top': getData('selector').y,
                             'left': (getData('selector').x + $selector
-                                .width())
+                                .outerWidth())
                                 + "px",
                             'width': $options.width,
-                            'height': $selector.height() + "px"
+                            'height': $selector.outerHeight() + "px"
                         });
                 }
                 ;
