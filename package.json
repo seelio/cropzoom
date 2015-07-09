@@ -1,6 +1,6 @@
 {
   "name": "cropzoom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "jQuery cropzoom",
   "main": "plugin/jquery.cropzoom.js",
   "scripts": {
