@@ -1,0 +1,25 @@
+{
+  "name": "cropzoom",
+  "version": "0.0.1",
+  "description": "jQuery cropzoom",
+  "main": "plugin/jquery.cropzoom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seelio/cropzoom.git"
+  },
+  "keywords": [
+    "jquery",
+    "cropzoom",
+    "crop",
+    "zoom"
+  ],
+  "author": "gastonrobledo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seelio/cropzoom/issues"
+  },
+  "homepage": "https://github.com/seelio/cropzoom#readme"
+}
